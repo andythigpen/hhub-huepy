@@ -9,12 +9,47 @@
 <div class="container-fluid">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">HuePy</h3>
+      <h3 class="panel-title">Controls</h3>
     </div>
     <div class="panel-body">
-      <!-- TODO: add config for ip, username -->
       <button type="button" id="btn-all-off" class="btn btn-default">All Off</button>
       <button type="button" id="btn-all-on" class="btn btn-primary">All On</button>
+    </div>
+  </div>
+  <div class="panel panel-default" id="config">
+    <div class="panel-heading">
+      <h3 class="panel-title">Configuration</h3>
+    </div>
+    <div class="panel-body">
+      <div id="config-alert" class="alert alert-success hidden" role="alert"></div>
+
+      <form role="form" method="POST">
+        <div class="form-group">
+          <label for="txt-ip-address">Hue Hub IP address</label>
+          <input type="text" class="form-control" id="txt-ip-address" placeholder="IP address" name="ip" value="{{ g.settings.get('ip', '') }}">
+        </div>
+        <div class="form-group">
+          <label for="txt-username">Username</label>
+          <input type="text" class="form-control" id="txt-username" placeholder="Username" name="username" value="{{ g.settings.get('username', '') }}">
+        </div>
+        <button type="submit" class="btn btn-default">Save</button>
+      </form>
+
+      <div class="panel panel-default voffset4">
+        <div class="panel-heading">
+          <h3 class="panel-title">Setup</h3>
+        </div>
+        <div class="panel-body">
+          <ol>
+            <li><a href="#config" id="btn-discover">Discover the Hub IP address</a> or enter it manually above</li>
+            <li>Choose a username (at least 10 chars)</li>
+            <li>Click Save</li>
+            <li>Press the button on the Hue Hub</li>
+            <li><a href="#config" id="btn-register">Register this app</a> with the Hub</li>
+            <li><a href="#config" id="btn-test-hub">Test the connection</a></li>
+          </ol>
+        </div>
+      </div>
     </div>
   </div>
 </div>

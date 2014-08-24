@@ -29,6 +29,15 @@ class Api(object):
             raise Exception(response['error']['description'])
         self.username = response['success']['username']
 
+    def test_connection(self):
+        try:
+            state = self.state
+            if type(state) == list and 'error' in state[0]:
+                return False
+        except:
+            return False
+        return True
+
     def delete_user(self, username):
         url = self.config_url + '/whitelist/' + username
         r = requests.delete(url)
@@ -227,10 +236,7 @@ if __name__ == '__main__':
         except Exception as e:
             print('Failed to register: %s' % e)
             sys.exit(1)
-    try:
-        api.config
-    except:
+    if not api.test_connection():
         print('Failed to communicate with the bridge')
         sys.exit(1)
     print('Successfully connected to bridge at ' + ip)
-
