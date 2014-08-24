@@ -30,19 +30,6 @@ class HuepyPlugin(LightsPlugin):
         if resource_id:
             target = target.find(resource_id)
 
-        for k,v in kwargs.items():
-            if v.isnumeric():
-                kwargs[k] = int(v)
-            elif v in ['true','yes','y']:
-                kwargs[k] = True
-            elif v in ['false','no','n']:
-                kwargs[k] = False
-            else:
-                try:
-                    kwargs[k] = float(v)
-                except ValueError:
-                    pass
-
         if kwargs.pop('off', False):
             # there's no off command, only on=False
             kwargs['on'] = False
